@@ -66,7 +66,7 @@ fn counter() -> Html {
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-fn switch(routes: &Route) -> Html {
+fn switch(routes: Route) -> Html {
     match routes {
         Route::Home => html! { <h1>{ "Home" }</h1> },
         Route::Counter => html! { <Counter /> },
@@ -78,7 +78,7 @@ fn switch(routes: &Route) -> Html {
 fn app() -> Html {
     html! {
         <BrowserRouter>
-            <Switch<Route> render={Switch::render(switch)} />
+            <Switch<Route> render={switch} />
         </BrowserRouter>
     }
 }
@@ -87,5 +87,5 @@ fn main() {
     console_error_panic_hook::set_once();
     tracing_wasm::set_as_global_default();
 
-    yew::start_app::<App>();
+    yew::Renderer::<App>::new().render();
 }

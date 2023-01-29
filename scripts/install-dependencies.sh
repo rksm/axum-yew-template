@@ -17,6 +17,7 @@ cargo add \
       yew \
       yew-router
 cargo add serde --features derive
+cargo add yew --features csr
 popd
 
 pushd server;
